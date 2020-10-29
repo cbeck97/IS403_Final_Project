@@ -12,3 +12,4 @@ Cookbook Website:
     *- Create*
     *- Edit*
     *- Recipe*
+    *- About*
