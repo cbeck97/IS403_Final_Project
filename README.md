@@ -3,7 +3,7 @@
 As a group, you can decide if you want to use Git/GitHub (I would recommend using it at least so you can practice)
 
 Create your Python final project
-Cookbook website
+    - Cookbook website
 
 Define the applications that will be needed
 
