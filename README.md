@@ -4,6 +4,7 @@ Cookbook Website:
 
 *Apps:*
     *-recipes*
+    *-Login/register*
 
 *Views:*
     *- Sign up*

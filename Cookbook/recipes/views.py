@@ -5,14 +5,6 @@ def indexPageView(request):
     output='Home Page'
     return HttpResponse(output)
 
-def signUpPageView(request):
-    output = 'sign up'
-    return HttpResponse(output)
-
-def loginPageView(request):
-    output = 'login'
-    return HttpResponse(output)
-
 def createRecipePageView(request):
     output = 'Create Recipe'
     return HttpResponse(output)
