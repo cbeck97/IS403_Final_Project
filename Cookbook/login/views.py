@@ -9,3 +9,6 @@ def signUpPageView(request):
 def loginPageView(request):
     output = 'login'
     return HttpResponse(output)
+
+#def profilePageView(request)
+#Do this if we have time
