@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 # Create your views here.
 def indexPageView(request):
@@ -6,16 +7,13 @@ def indexPageView(request):
     return HttpResponse(output)
 
 def createRecipePageView(request):
-    output = 'Create Recipe'
-    return HttpResponse(output)
+    return render(request, 'recipes/create_recipe.html')
 
 def editRecipePageView(request):
-    output = 'edit'
-    return HttpResponse(output)
+    return render(request, 'recipes/edit_recipe.html')
 
 def viewRecipePageView(request):
-    output = 'view recipe'
-    return HttpResponse(output)
+    return render(request, 'recipes/view_recipe.html')
 
 def aboutPageView(request):
     output='about page'
