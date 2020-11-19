@@ -1,0 +1,26 @@
+These are the forms we will need to implement:
+
+Login:
+    - Username
+    - Password
+
+Signup:
+    - First Name
+    - Last Name
+    - Email
+    - Photo
+    - Password
+
+Create Recipe:
+    - Recipe Name
+    - Recipe Description 
+    - Recipe Steps 
+    - Recipe Type 
+    - Photo
+
+Edit Recipe:
+    - Recipe Name
+    - Recipe Description 
+    - Recipe Steps 
+    - Recipe Type 
+    - Photo
