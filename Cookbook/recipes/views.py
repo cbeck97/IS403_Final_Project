@@ -3,8 +3,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def indexPageView(request):
-    output='Home Page'
-    return HttpResponse(output)
+    return render(request, 'recipes/homepage.html')
 
 def createRecipePageView(request):
     return render(request, 'recipes/create_recipe.html')
