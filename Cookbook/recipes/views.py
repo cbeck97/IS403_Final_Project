@@ -17,7 +17,7 @@ def viewRecipePageView(request):
 def recipesPageView(request):
     #this is hardcoded to demonstrate how many recipes can be dynamically shown on a single page
     list = []
-    for i in range(6):
+    for i in range(12):
         list.append(i + 1)
 
     context = {
@@ -25,6 +25,7 @@ def recipesPageView(request):
     }
     return render(request, 'recipes/recipes.html', context)
 
+#we can probably get rid of this
 def aboutPageView(request):
     output='about page'
     return HttpResponse(output)
