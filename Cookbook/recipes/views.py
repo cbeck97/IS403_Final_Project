@@ -3,8 +3,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def indexPageView(request):
-    output='Home Page'
-    return HttpResponse(output)
+    return render(request, 'recipes/index.html')
 
 def createRecipePageView(request):
     return render(request, 'recipes/create_recipe.html')
@@ -14,6 +13,16 @@ def editRecipePageView(request):
 
 def viewRecipePageView(request):
     return render(request, 'recipes/view_recipe.html')
+
+def recipesPageView(request):
+    list = []
+    for i in range(6):
+        list.append(i + 1)
+
+    context = {
+        'list' : list
+    }
+    return render(request, 'recipes/recipes.html', context)
 
 def aboutPageView(request):
     output='about page'

@@ -1,0 +1,94 @@
+
+{% extends 'recipes/recipe_base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Portfolio Section-->
+        
+        <section class="page-section portfolio" id="portfolio">
+            <div class="container">
+                <!-- Recipe Heading-->
+                <h2 class="page-section-heading text-center text-secondary mb-0">Recipe Category</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Grid Items-->
+                <div class="row justify-content-center" id='portfolio'>
+                    {% for i in list %}
+                    <!-- Portfolio Item 1-->
+                    
+                        <div class="portfolio-item mx-auto recipeitem" data-toggle="modal" data-target="#portfolioModal{{i}}">
+                            
+                            <!--Recipe Photo-->
+                            <div class = 'portfolio-item mx-auto recipeitem'>
+                                <img class="img-fluid" src="https://source.unsplash.com/random/1200x800" alt="recipe image" />
+                            </div>
+                            <br>
+                            <h5>Recipe Title</h5>
+                            <p class = "lead mb-0">by Begginer chef: <span>Carter Beck</span></p>
+                            <br>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+      
+
+        <!-- Portfolio Modals-->
+        <!-- Portfolio Modal 1-->
+        {% for i in list %}
+        <div class="portfolio-modal modal fade" id="portfolioModal{{i}}" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                    <div class="modal-body text-center">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal1Label">Recipe Title {{i}}</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <div class = 'recipe-content'>
+                                        <div id="description">
+                                            <h3>Description</h3>
+                                            <p>Delectus nulla at quo mollitia error harum alias, sed sequi asperiores nihil iure corporis sint adipisci ea quidem tenetur? Consequuntur at odit dolor recusandae quasi earum assumenda porro, iusto dignissimos quam eum et obcaecati non repellat incidunt. Delectus nulla at quo mollitia error harum alias, sed sequi asperiores nihil iure corporis sint adipisci ea quidem tenetur? Consequuntur at odit dolor recusandae quasi earum assumenda porro, iusto dignissimos quam eum et obcaecati non repellat incidunt. Delectus nulla at quo mollitia error harum alias, sed sequi asperiores nihil iure corporis sint adipisci ea quidem tenetur? Consequuntur at odit dolor recusandae quasi earum assumenda porro, iusto dignissimos quam eum et obcaecati non repellat incidunt. Delectus nulla at quo mollitia error harum alias, sed sequi asperiores nihil iure corporis sint adipisci ea quidem tenetur? Consequuntur at odit dolor recusandae quasi earum assumenda porro, iusto dignissimos quam eum et obcaecati non rep</p>
+                                        </div>
+                                        <div class = 'recipe-ingredients'>
+                                            <h3  class = 'recipe-header'>Ingredients</h3>
+                                            <p>1/4 cup vegetable oil</p>
+                                            <p>2 cups white cornmeal</p>
+                                            <p>3/4 cups all-purpose flour</p>
+                                            <p>1/3 cup white sugar</p>
+                                            <p>2 eggs</p>
+                                        </div>
+                                        <div>
+                                            <h3 class = 'recipe-header'>Recipe Steps</h3>
+                                            <p>{% lorem 2 b random %}</P>
+                                        </div>
+                                    </div>
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <button class="btn btn-primary" data-dismiss="modal">
+                                        <i class="fas fa-times fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+{% endblock %}
