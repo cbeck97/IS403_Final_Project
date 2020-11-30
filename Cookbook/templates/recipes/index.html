@@ -52,22 +52,23 @@
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">
                     <!-- Portfolio Item 1-->
+                    
                     <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
+                        <a class="portfolio-item mx-auto" href = {% url 'recipes' cat='Breakfast' %}>
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><h1>Breakfast<h1></div>
                             </div>
                             <img class="img-fluid" src="{% static 'img/breakfast.jpg' %}" alt="breakfast" />
-                        </div>
+                        </a>
                     </div>
                     <!-- Portfolio Item 2-->
                     <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
+                        <a class="portfolio-item mx-auto" href = {% url 'recipes' cat='Lunch' %}>
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><h1>Lunch<h1></div>
                             </div>
                             <img class="img-fluid" src="{% static 'img/lunch.jpg' %}" alt="lunch" />
-                        </div>
+                        </a>
                     </div>
                     <!-- Portfolio Item 3-->
                     <div class="col-md-6 col-lg-4 mb-5">
