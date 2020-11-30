@@ -3,11 +3,7 @@ from django.shortcuts import render
 from .models import Recipe, RecipeIngredient
 # Create your views here.
 def indexPageView(request):
-<<<<<<< HEAD
-    return render(request, 'recipes/homepage.html')
-=======
     return render(request, 'recipes/index.html')
->>>>>>> 762c58ef6ee9d6963b347aa95e15905af6436746
 
 def createRecipePageView(request):
     return render(request, 'recipes/create_recipe.html')
