@@ -40,5 +40,5 @@ class RecipeIngredient(models.Model):
     sequence = models.SmallIntegerField(default=0)
 
     def __str__(self):
-        return self.ingredient_name
+        return (self.measure_amount + ' ' + self.measurement_type + ' ' + self.ingredient_name)
 
