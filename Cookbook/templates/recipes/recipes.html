@@ -1,0 +1,97 @@
+
+{% extends 'recipes/recipe_base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Portfolio Section-->
+        
+        <section class="page-section portfolio" id="portfolio">
+            <div class="container">
+                <!-- Recipe Heading-->
+                <h2 class="page-section-heading text-center text-secondary mb-0">{{category}}</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Grid Items-->
+                <div class="row justify-content-center" id='portfolio'>
+                    {% for i in list %}
+                    
+                    <!-- Portfolio Item 1-->
+                    
+                        <div class="portfolio-item mx-auto recipeitem" data-toggle="modal" data-target="#portfolioModal{{i.id}}">
+                            
+                            <!--Recipe Photo-->
+                            <div class = 'portfolio-item mx-auto recipeitem'>
+                                <img class="img-fluid" src="https://source.unsplash.com/random/1200x800" alt="recipe image" />
+                            </div>
+                            <br>
+                            <h5>{{i.recipe_name}}</h5>
+                            <p class = "lead mb-0">by chef: <span>{{i.user}}</span></p>
+                            <br>
+                        </div>
+                    
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <script>document.title = 'Recipes'</script>
+      
+
+        <!-- Portfolio Modals-->
+        <!-- Portfolio Modal 1-->
+        {% for i in list %}
+        <div class="portfolio-modal modal fade" id="portfolioModal{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                    <div class="modal-body text-center">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal1Label">  {{i.recipe_name}}</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <div class = 'recipe-content'>
+                                        <div id="description">
+                                            <h3>Description</h3>
+                                            <p>{{i.recipe_description}}</p>
+                                        </div>
+                                        <div class = 'recipe-ingredients'>
+                                            <h3  class = 'recipe-header'>Ingredients</h3>
+                                            {% for ing in ingredients %}
+                                            {% if ing.recipe == i %}
+                                            <p>{{ing}}</p>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        <div>
+                                            <h3 class = 'recipe-header'>Recipe Steps</h3>
+                                            <p>{{i.recipe_steps}}</P>
+                                        </div>
+                                    </div>
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-5"></p>
+                                    <button class="btn btn-primary" data-dismiss="modal">
+                                        <i class="fas fa-times fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% endfor %}
+{% endblock %}
