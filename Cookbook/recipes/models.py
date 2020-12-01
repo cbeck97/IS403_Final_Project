@@ -35,7 +35,7 @@ class RecipeIngredient(models.Model):
     measure_amount = models.CharField(max_length=20)
     measurement_type = models.CharField(max_length=20)
     recipe = models.ForeignKey(Recipe, on_delete=CASCADE)
-    sequence = models.SmallIntegerField(default=0)
+
 
     def __str__(self):
         return (self.measure_amount + ' ' + self.measurement_type + ' ' + self.ingredient_name)
