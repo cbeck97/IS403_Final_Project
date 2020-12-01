@@ -3,7 +3,6 @@ from django.shortcuts import render
 from .models import Recipe, RecipeIngredient
 # Create your views here.
 def indexPageView(request):
-
     return render(request, 'recipes/index.html')
 
 
