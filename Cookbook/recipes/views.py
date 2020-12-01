@@ -47,7 +47,7 @@ def editRecipe(request):
    
     print(recipe_id)
 
-    return redirect('index')
+    return redirect('ingredients', recipe_id)
 
 def ingredientsPageView(request, recipe):
     recipe_ingredients = []
