@@ -1,0 +1,58 @@
+{% extends 'recipes/recipe_base.html'%}
+{% block content%}
+<!-- Contact Section-->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <!-- Contact Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Show us what you got</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Contact Section Form-->
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
+                        <div>
+                            
+                        </div>
+                        <form id="createForm" name="create" novalidate="novalidate" action=''>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Ingredient Name</label>
+                                    <input autofocus class="form-control" id="ingredienttitle" type="text" placeholder="Ingredient Name" 
+                                    name="IngredientName"
+                                    required="required" data-validation-required-message="Please enter your recipe title." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Measurement Amount</label>
+                                    <input autofocus class="form-control" id="ingredienttitle" type="text" placeholder="Measurement Amount" 
+                                    name="MeasurementAmount"
+                                    required="required" data-validation-required-message="Please enter your recipe title." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Measurement Type</label>
+                                    <input autofocus class="form-control" id="ingredienttitle" type="text" placeholder="Measurement Type (oz, cup, etc.)" 
+                                    name="MeasurementType"
+                                    required="required" data-validation-required-message="Please enter your recipe title." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div id="success"></div>
+                            <div class="form-group"><button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Submit</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock%}

@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Recipe, RecipeIngredient
+from .models import Recipe, RecipeIngredient, RecipeType
 # Create your views here.
 def indexPageView(request):
     return render(request, 'recipes/index.html')
@@ -9,8 +9,25 @@ def indexPageView(request):
 def createRecipePageView(request):
     return render(request, 'recipes/create_recipe.html')
 
+def addRecipe(request):
+    recipe_title = request.GET['recipeTitle']
+    recipe_description = request.GET['recipeDescription']
+    recipe_steps = request.GET['recipeSteps']
+    recipe_type = request.GET['recipeType']
+
+    rt = RecipeType.objects.get(recipe_type_description = recipe_type)
+    
+    recipe = Recipe(recipe_name = recipe_title, recipe_description = recipe_description, recipe_steps = recipe_steps, recipe_type = rt)
+    recipe.save()
+    print('Test')
+
+    return render(request, 'recipes/add_ingredients.html')
+
 def editRecipePageView(request):
     return render(request, 'recipes/edit_recipe.html')
+
+def addIngredientPageView(request):
+    return render(request, 'recipes/add_ingredients.html')
 
 def viewRecipePageView(request):
     return render(request, 'recipes/view_recipe.html')
