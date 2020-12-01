@@ -5,6 +5,7 @@ from .models import Recipe, RecipeIngredient
 def indexPageView(request):
     return render(request, 'recipes/index.html')
 
+
 def createRecipePageView(request):
     return render(request, 'recipes/create_recipe.html')
 

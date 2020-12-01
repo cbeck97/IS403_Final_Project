@@ -13,7 +13,7 @@ class User(models.Model):
     photo = models.ImageField(upload_to = 'photos', blank=True)
 
     def __str__(self):
-        return (self.last_name +', ' + self.first_name)
+        return (self.first_name + ' ' + self.last_name)
 
 class RecipeType(models.Model):
     recipe_type_description = models.CharField(max_length=50)
@@ -31,7 +31,6 @@ class Recipe(models.Model):
 
     def __str__(self):
         return (self.recipe_name)
-
 class RecipeIngredient(models.Model):
     ingredient_name = models.CharField(max_length=50)
     measure_amount = models.CharField(max_length=20)

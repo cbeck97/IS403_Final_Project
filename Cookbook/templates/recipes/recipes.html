@@ -21,11 +21,15 @@
                     
                     <!-- Portfolio Item 1-->
                     
-                        <div class="portfolio-item mx-auto recipeitem" data-toggle="modal" data-target="#portfolioModal{{i.id}}">
+                        <div class="portfolio-item mx-auto recipeitem col-md-6 col-lg-4 mb-5" data-toggle="modal" data-target="#portfolioModal{{i.id}}">
                             
                             <!--Recipe Photo-->
                             <div class = 'portfolio-item mx-auto recipeitem'>
-                                <img class="img-fluid" src="https://source.unsplash.com/random/1200x800" alt="recipe image" />
+                                {% if i.photo.url is not None%}
+                                <img class="img-fluid" src="{{i.photo.url}}" alt="recipe image" />
+                                {% else  %}
+                                <img class="img-fluid" src="{{'/media/photos/404.jpg'}}" alt="recipe image" />
+                                {% endif %}
                             </div>
                             <br>
                             <h5>{{i.recipe_name}}</h5>
