@@ -23,8 +23,31 @@ def addRecipe(request):
     print(recipe.id)
     return redirect('ingredients', recipe.id)
 
-def editRecipePageView(request):
-    return render(request, 'recipes/edit_recipe.html')
+def editRecipePageView(request, recipeid):
+    print('-------------------------------------',recipeid)
+    recipe = Recipe.objects.get(id = recipeid)
+    context = {
+        'recipe' : recipe,
+    }
+    
+    return render(request, 'recipes/edit_recipe.html', context)
+
+def editRecipe(request):
+    
+    recipe_type = request.POST.get('recipeType')
+    #photo = request.POST.get('photo')
+    rt = RecipeType.objects.get(recipe_type_description = recipe_type)
+    recipe_id = request.POST.get('id')
+    recipe = Recipe.objects.get(id = recipe_id)
+    recipe.recipe_name = request.POST.get('recipeTitle')
+    recipe.recipe_description = request.POST.get('recipeDescription')
+    recipe.recipe_steps = request.POST.get('recipeSteps')
+    recipe.recipe_type = rt
+    recipe.save()
+   
+    print(recipe_id)
+
+    return redirect('index')
 
 def ingredientsPageView(request, recipe):
     recipe_ingredients = []
@@ -59,15 +82,15 @@ def deleteIngredient(request, recipe):
 def viewRecipePageView(request):
     return render(request, 'recipes/view_recipe.html')
 
-def recipesPageView(request, query = Recipe.objects.all(), ingred = RecipeIngredient.objects.all(), cat = 'blank'):
+def recipesPageView(request, cat = 'blank'):
     #this is hardcoded to demonstrate how many recipes can be dynamically shown on a single page
     list = []
-    for i in query:
+    for i in Recipe.objects.all():
         if i.recipe_type.recipe_type_description == cat :
             list.append(i)
     
     ingredients = []
-    for ing in ingred:
+    for ing in RecipeIngredient.objects.all():
         ingredients.append(ing)
     context = {
         'list' : list,
@@ -75,6 +98,10 @@ def recipesPageView(request, query = Recipe.objects.all(), ingred = RecipeIngred
         'category' : cat,
     }
     return render(request, 'recipes/recipes.html', context)
+
+def deleteRecipe(request, cat):
+    Recipe.objects.get(id = request.POST.get('id')).delete()
+    return redirect('recipes', cat)
 
 #we can probably get rid of this
 def aboutPageView(request):

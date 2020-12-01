@@ -1,6 +1,7 @@
 {% extends 'recipes/recipe_base.html'%}
 {% block content%}
-<section class="page-section" id="contact">
+<!-- Contact Section-->
+        <section class="page-section" id="contact">
             <div class="container">
                 <!-- Contact Section Heading-->
                 <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Need to make some tweaks?</h2>
@@ -14,18 +15,20 @@
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                        <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                        <form id="createForm" name="create" novalidate="novalidate" method="POST" action="{% url 'editRecipe'%}">
+                            {% csrf_token %}
+                            <input name='id' hidden value = {{recipe.id}}> 
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <label>Recipe Title</label>
-                                    <input autofocus class="form-control" id="recipetitle" type="text" placeholder="Recipe Title" required="required" data-validation-required-message="Please enter your recipe title." />
+                                    <input autofocus class="form-control" id="recipetitle" name='recipeTitle'  value = {{recipe.recipe_name}} type="text" placeholder="Recipe Title" required="required" data-validation-required-message="Please enter your recipe title.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <label>Recipe Description</label>
-                                    <textarea rows = '3'class="form-control" id="recipedescription" type="text" placeholder="Recipe Description" required="required" data-validation-required-message="Please enter your recipe description." />Write your recipe description here.</textarea>
+                                    <textarea rows = '3'class="form-control" id="recipedescription" name='recipeDescription' type="text" placeholder="Recipe Description"  required="required" data-validation-required-message="Please enter your recipe description." >{{recipe.recipe_description}}</textarea>
                                     
                                     <p class="help-block text-danger"></p>
                                 </div>
@@ -33,7 +36,7 @@
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <label>Recipe Steps</label>
-                                    <textarea rows = '4'class="form-control" id="recipesteps" type="text" placeholder="Recipe steps" required="required" data-validation-required-message="Please enter your recipe steps." />Write your recipe steps here.</textarea>
+                                    <textarea rows = '4'class="form-control" id="recipesteps" name='recipeSteps' type="text" placeholder="Enter Recipe steps here" required="required" data-validation-required-message="Please enter your recipe steps" />{{recipe.recipe_steps}}</textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
@@ -41,13 +44,13 @@
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <!--<label>Recipe Type</label>-->
                                     <br>
-                                    <select class="form-control" name='recipetype' id="recipetype" type="select" placeholder="Password" required="required" data-validation-required-message="Please enter a valid password." />
-                                        <option value='1'>Breakfast</option>
-                                        <option value='2'>Lunch</option>
-                                        <option value='3'>Dinner</option>
-                                        <option value='4'>Dessert</option>
-                                        <option value='5'>Snack</option>
-                                        <option value='6'>Beverage</option>
+                                    <select class="form-control"name='recipeType' id="recipetype" type="select" placeholder="Password" required="required" data-validation-required-message="Please enter a valid password." />
+                                        <option {% if recipe.recipe_type.recipe_type_description == 'Breakfast' %} selected {% endif %} value='Breakfast'>Breakfast</option>
+                                        <option {% if recipe.recipe_type.recipe_type_description == 'Lunch' %} selected {% endif %} value='Lunch'>Lunch</option>
+                                        <option {% if recipe.recipe_type.recipe_type_description == 'Dinner' %} selected {% endif %} value='Dinner'>Dinner</option>
+                                        <option {% if recipe.recipe_type.recipe_type_description == 'Dessert' %} selected {% endif %} value='Dessert'>Dessert</option>
+                                        <option {% if recipe.recipe_type.recipe_type_description == 'Snack' %} selected {% endif %} value='Snack'>Snack</option>
+                                        <option {% if recipe.recipe_type.recipe_type_description == 'Beverage' %} selected {% endif %} value='Beverage'>Beverage</option>
                                     </select>
                                     <p class="help-block text-danger"></p>
                                 </div>
@@ -55,13 +58,13 @@
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <label>img</label>
-                                    <input class="form-control" id="img" type="file" accept='image/*' placeholder="Re-enter Password" required="required" data-validation-required-message="Please re-enter your password." />
+                                    <input class="form-control" id="img" type="file" accept='image/*' name = 'photo'placeholder="Re-enter Password" required="required" data-validation-required-message="Please re-enter your password." />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <br />
                             <div id="success"></div>
-                            <div class="form-group"><button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Submit</button></div>
+                            <div class="form-group"><button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit" >Submit</button></div>
                         </form>
                     </div>
                 </div>
