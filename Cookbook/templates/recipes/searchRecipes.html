@@ -17,27 +17,27 @@
                 </div>
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center" id='portfolio'>
-                    {% for i in recipes %}
+                    {% for recipe in recipes %}
                     
                     <!-- Portfolio Item 1-->
                     
                         <div class="portfolio-item mx-auto recipeitem col-md-6 col-lg-4 mb-5" >
-                           <div data-toggle="modal" data-target="#portfolioModal{{i.id}}"> 
+                           <div data-toggle="modal" data-target="#portfolioModal{{recipe.id}}"> 
                             <!--Recipe Photo-->
                             <div class = 'portfolio-item mx-auto recipeitem' >
-                                {% if i.photo.url is not None%}
-                                <img class="img-fluid" src="{{i.photo.url}}" alt="recipe image" />
+                                {% if recipe.photo.url is not None%}
+                                <img class="img-fluid" src="{{recipe.photo.url}}" alt="recipe image" />
                                 {% else  %}
                                 <img class="img-fluid" src="{{'/media/photos/404.jpg'}}" alt="recipe image" />
                                 {% endif %}
                             </div>
                             <br>
-                            <h5>{{i.recipe_name}}</h5>
+                            <h5>{{recipe.recipe_name}}</h5>
                             </div>
                             <div style='display:flex;'>
-                                <form method='POST' action="{% url 'edit' recipeid=i.id %}">{% csrf_token %}<input hidden name='id' value = {{i.id}}><button class='btn btn-primary'>Edit</button></form>
+                                <form method='POST' action="{% url 'edit' recipeid=recipe.id %}">{% csrf_token %}<input hidden name='id' value = {{recipe.id}}><button class='btn btn-primary'>Edit</button></form>
                                 <p style='color:#f8f9fa'>--</p>
-                                <form method='POST' action="{% url 'deleteRecipe' cat=i.recipe_type.recipe_type_description %}">{% csrf_token %}<input hidden name='id' value = {{i.id}}><button class='btn btn-primary'>Delete</button></form>
+                                <form method='POST' action="{% url 'deleteRecipe' cat=recipe.recipe_type.recipe_type_description %}">{% csrf_token %}<input hidden name='id' value = {{recipe.id}}><button class='btn btn-primary'>Delete</button></form>
                             </div>
                             <br>
                         </div>
@@ -51,8 +51,8 @@
 
         <!-- Portfolio Modals-->
         <!-- Portfolio Modal 1-->
-        {% for i in recipes %}
-        <div class="portfolio-modal modal fade" id="portfolioModal{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
+        {% for recipe in recipes %}
+        <div class="portfolio-modal modal fade" id="portfolioModal{{recipe.id}}" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -63,7 +63,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal1Label">  {{i.recipe_name}}</h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal1Label">  {{recipe.recipe_name}}</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -73,19 +73,19 @@
                                     <div class = 'recipe-content'>
                                         <div id="description">
                                             <h3>Description</h3>
-                                            <p>{{i.recipe_description}}</p>
+                                            <p>{{recipe.recipe_description}}</p>
                                         </div>
                                         <div class = 'recipe-ingredients'>
                                             <h3  class = 'recipe-header'>Ingredients</h3>
-                                            {% for ing in ingredients %}
-                                            {% if ing.recipe == i %}
-                                            <p>{{ing}}</p>
+                                            {% for ingredient in ingredients %}
+                                            {% if ingredient.recipe == recipe %}
+                                            <p>{{ingredient}}</p>
                                             {% endif %}
                                             {% endfor %}
                                         </div>
                                         <div>
                                             <h3 class = 'recipe-header'>Recipe Steps</h3>
-                                            <p>{{i.recipe_steps}}</P>
+                                            <p>{{recipe.recipe_steps}}</P>
                                         </div>
                                     </div>
                                     <!-- Portfolio Modal - Text-->
