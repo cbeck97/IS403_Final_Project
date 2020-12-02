@@ -103,8 +103,25 @@ def deleteRecipe(request, cat):
     Recipe.objects.get(id = request.POST.get('id')).delete()
     return redirect('recipes', cat)
 
-#we can probably get rid of this
-def aboutPageView(request):
-    output='about page'
-    return HttpResponse(output)
+def searchRecipes(request):
+    search = request.GET['search']
+    results = []
+    for recipe in Recipe.objects.filter(recipe_name__contains=search):
+        results.append(recipe)
+    for recipe in Recipe.objects.filter(recipe_description__contains=search):
+        if recipe not in results:
+            results.append(recipe)
+    for recipe in Recipe.objects.filter(recipe_steps__contains=search):
+        if recipe not in results:
+            results.append(recipe)
+    for ing in RecipeIngredient.objects.filter(ingredient_name__contains=search):
+        if ing.recipe not in results:
+            results.append(ing.recipe)
+
+    context = {
+        'recipes' : results,
+        'search' : search,
+    }
+
+    return render(request, 'recipes/searchRecipes.html', context)
     
