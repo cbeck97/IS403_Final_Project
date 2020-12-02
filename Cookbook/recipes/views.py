@@ -104,7 +104,7 @@ def deleteRecipe(request, cat):
     return redirect('recipes', cat)
 
 def searchRecipes(request):
-    search = request.GET['search']
+    search = request.GET['search'].lower()
     results = []
     for recipe in Recipe.objects.filter(recipe_name__contains=search):
         results.append(recipe)
