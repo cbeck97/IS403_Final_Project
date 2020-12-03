@@ -127,18 +127,26 @@ def deleteRecipe(request, cat):
 #when a match is found it is added to the results that will be sent to the template
 def searchRecipes(request):
     search = request.GET['search'].lower()
+    print('search:',search)
     results = []
-    for recipe in Recipe.objects.filter(recipe_name__contains=search):
+    for i in Recipe.objects.all():
+        print('all_names:', i.recipe_name.lower())
+    for recipe in Recipe.objects.filter(recipe_name__icontains=search):
         results.append(recipe)
-    for recipe in Recipe.objects.filter(recipe_description__contains=search):
+        print('name:', recipe.recipe_name)
+        
+    for recipe in Recipe.objects.filter(recipe_description__icontains=search):
         if recipe not in results:
             results.append(recipe)
-    for recipe in Recipe.objects.filter(recipe_steps__contains=search):
+            print('description:', recipe.recipe_description)
+    for recipe in Recipe.objects.filter(recipe_steps__icontains=search):
         if recipe not in results:
             results.append(recipe)
-    for ing in RecipeIngredient.objects.filter(ingredient_name__contains=search):
+            print('steps:', recipe.recipe_steps)
+    for ing in RecipeIngredient.objects.filter(ingredient_name__icontains=search):
         if ing.recipe not in results:
             results.append(ing.recipe)
+            print('ing:', ing.recipe.recipe_name)
     ingredients = RecipeIngredient.objects.all()
     context = {
         'recipes' : results,
